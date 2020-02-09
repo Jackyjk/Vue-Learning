@@ -21,5 +21,13 @@ module.exports = {
         //设置文件名
         filename: "bundle.js"
     },
-    plugins: [htmlPlugin]
+    plugins: [htmlPlugin],
+    module: {
+        rules: [{
+            //test设置需要匹配的文件类型，支持正则
+            test: /\.css$/,
+            //use表示该文件类型需要调用的loader
+            use: ['style-loader', 'css-loader']
+        }]
+    }
 }
