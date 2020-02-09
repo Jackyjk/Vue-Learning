@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <!-- 导入 vue 文件 -->
+    <script src="../js/vue_2.5.22.js"></script>
+    <script src="../js/vue-router_3.0.2.js"></script>
+</head>
+
+<body>
+    <!-- 被 vm 实例所控制的区域 -->
+    <div id="app">
+        <router-link to="/user">User</router-link>
+        <router-link to="/login">Login</router-link>
+
+        <!-- 路由占位符 -->
+        <router-view></router-view>
+    </div>
+
+    <script>
+        var User = {
+            template: "<div>This is User</div>"
+        }
+        //Login组件中的模板代码里面包含了子级路由链接以及子级路由的占位符
+        var Login = {
+            template: `<div>
+        <h1>This is Login</h1>
+        <hr>
+        <router-link to="/login/account">账号密码登录</router-link>
+        <router-link to="/login/phone">扫码登录</router-link>
+        <!-- 子路由组件将会在router-view中显示 -->
+        <router-view></router-view>
+        </div>`
+        }
+
+        //定义两个子级路由组件
+        var account = {
+            template: "<div>账号：<input><br>密码：<input></div>"
+        };
+        var phone = {
+            template: "<h1>扫我二维码</h1>"
+        };
+        var myRouter = new VueRouter({
+            //routes是路由规则数组
+            routes: [{
+                    path: "/",
+                    redirect: "/user"
+                },
+                {
+                    path: "/user",
+                    component: User
+                },
+                {
+                    path: "/login",
+                    component: Login,
+                    //通过children属性为/login添加子路由规则
+                    children: [{
+                            path: "/login/account",
+                            component: account
+                        },
+                        {
+                            path: "/login/phone",
+                            component: phone
+                        },
+                    ]
+                }
+            ]
+        })
+
+        var vm = new Vue({
+            el: '#app',
+            data: {},
+            methods: {},
+            router: myRouter
+        });
+    </script>
+</body>
+
+</html>
