@@ -10,5 +10,6 @@ li{
     width:580px;
     height:340px;
     background-color:aqua;
-    background:url("/images/1.jpg")
+    background:url("../images/1.jpg")
+    /* background: url("/th?id=OHR.BrightonJetty_ZH-CN1526526038_1920x1080.jpg&amp;rf=LaDigue_1920x1080.jpg&amp;pid=hp"); */
 }
