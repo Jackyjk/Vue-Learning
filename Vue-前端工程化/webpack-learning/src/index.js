@@ -1,6 +1,13 @@
 import $ from "jquery";
 import './css/1.css'
-    $(function(){
-        $("li:odd").css("background","blue");
-        $("li:even").css("background","pink");
-    })
+$(function () {
+    $("li:odd").css("background", "blue");
+    $("li:even").css("background", "pink");
+})
+
+
+class Person {
+    static info = "Aaa"
+}
+
+console.log(Person.info);
