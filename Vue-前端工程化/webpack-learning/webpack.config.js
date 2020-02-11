@@ -4,7 +4,7 @@ const htmlPlguin = new HtmlWebpackPlugin({
   template: './src/index.html',
   filename: 'index.html'
 })
-// const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
   // 编译模式
@@ -14,7 +14,7 @@ module.exports = {
     path: path.join(__dirname, './dist'), // 输出文件的存放路径
     filename: 'bundle.js' // 输出文件的名称
   },
-  plugins: [htmlPlguin], //, new VueLoaderPlugin()
+  plugins: [htmlPlguin, new VueLoaderPlugin()], //
   module: {
     rules: [{
         test: /\.css$/,
@@ -34,7 +34,7 @@ module.exports = {
         use: 'babel-loader',
         exclude: /node_modules/
       },
-      // { test: /\.vue$/, use: 'vue-loader' }
+      { test: /\.vue$/, use: 'vue-loader' }
     ]
   }
 }
